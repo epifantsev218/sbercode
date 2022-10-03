@@ -88,6 +88,27 @@
     "uimessage2": "\u001b[32mYour Interactive Bash Terminal.\u001b[m\r\n"
   },
   "backend": {
-    "imageid": "openshift-client"
+    "imageid": "openshift-client",
+    "openShift": {
+      "enable": true,
+      "serviceAccountNameInProject": "student",
+      "clusterRoleNameForBinding": "admin",
+      "projects": [
+        {
+          "name": "infra",
+          "displayName": "infra",
+          "description": "This is project for exercise dependencies workloads"
+        },
+        {
+          "name": "work",
+          "displayName": "work",
+          "description": "This is project for exercise workloads",
+          "inServiceMeshControlPlane": {
+            "name": "basic",
+            "namespace": "istio-system"
+          }
+        }
+      ]
+    }
   }
 }

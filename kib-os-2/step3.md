@@ -1,6 +1,6 @@
 Для настройки нужно знать, к какому Control Plane подключен проект. Найдем название в описании проекта
 
-`oc describe project ci00706316-idevgen2-loans-for-business-dev2  | grep member-of` {{execute}}
+`oc describe project ci00706316-idevgen2-loans-for-business-dev2  | grep member-of`{{execute}}
 
 Создадим Deployment Ingress Gateway. Для настройки требуется:
 * имя проекта
@@ -10,7 +10,7 @@
 * secret, содержащий сертификаты, которые будут использоваться для настройки соединений. Они должны пыть монтированы в Deployment Ingress Gateway (см. блоки Volumes и VolumeMounts)
 
 `oc process -f ingress-template.yml --param-file ingress-params.env -o yaml > conf.yml
-oc apply -f conf.yml` {{execute}}
+oc apply -f conf.yml`{{execute}}
 
 В логах пода Ingress Gateway необходимо дождаться сообщения
 

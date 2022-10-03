@@ -1,7 +1,7 @@
 Mutual TLS - взаимная проверка клиентом и сервером сертификатов друг друга
 
 `oc process -f mutual.yml --param-file mutual-params.env -o yaml > conf.yml
-oc apply -f conf.yml` {{execute}}
+oc apply -f conf.yml`{{execute}}
 
 При попытке вызова без клиентского сертификата получим ошибку SSL Handshake
 

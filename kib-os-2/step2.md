@@ -7,8 +7,7 @@
 которые вы будете использовать далее по заданию. Так как сертификат самоподписанный - его можно переделать во время
 выполнения любого задания
 
-`openssl req -new -x509 -newkey rsa:2048 -sha256 -nodes -keyout ./certs/key.pem -days 365 -out ./certs/crt.pem -config ./certs/req.cnf`
-{{execute}}
+`openssl req -new -x509 -newkey rsa:2048 -sha256 -nodes -keyout ./certs/key.pem -days 365 -out ./certs/crt.pem -config ./certs/req.cnf`{{execute}}
 
 На выходе получим следующие файлы:
 
@@ -23,4 +22,4 @@
 * Файла с цепочками УЦ. Т.к. мы используем самоподписанный сертификат, то кладем его вместо цепочек УЦ
 
 `oc create secret generic ingress-certs --from-file=key.pem=./certs/key.pem --from-file=crt.pem=./certs/crt.pem --from-file=ca.pem=./certs/crt.pem -o yaml --dry-run --validate > conf.yml;
-oc apply -f conf.yml` {{execute}}
+oc apply -f conf.yml`{{execute}}
