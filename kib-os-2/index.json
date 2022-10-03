@@ -56,7 +56,7 @@
           "target": "/root"
         },
         {
-          "file": "mutual-params.yml",
+          "file": "mutual-params.env",
           "target": "/root"
         },
         {
@@ -68,7 +68,7 @@
           "target": "/root"
         },
         {
-          "file": "simple-params.yml",
+          "file": "simple-params.env",
           "target": "/root"
         },
         {
