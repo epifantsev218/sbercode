@@ -19,7 +19,7 @@
         },
         "assets": {
             "host01": [
-                {"file": "server.yml", "target": "/usr/local/k8s"},
+                {"file": "server.yml", "target": "/root"},
                 {"file": "k8s.sh", "target": "/usr/local/autostart-scripts.d", "chmod": "+x"}
             ]
         }
