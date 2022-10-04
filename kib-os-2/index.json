@@ -44,6 +44,10 @@
           "target": "/root"
         },
         {
+          "file": "easy-params.env",
+          "target": "/root"
+        },
+        {
           "file": "ingress-params.env",
           "target": "/root"
         },

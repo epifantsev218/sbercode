@@ -15,7 +15,7 @@ objects:
         istio: ${INGRESS_NAME}
       servers:
         - hosts:
-            - ${URL}
+            - ${SIMPLE_URL}
           port:
             name: https-3000
             number: 3000
@@ -39,7 +39,7 @@ objects:
         marker: practice
       name: simple-ingressgateway-https
     spec:
-      host: ${URL}
+      host: ${SIMPLE_URL}
       port:
         # Важно! Здесь указывается название (name) порта в Service, а не номер
         targetPort: https-3000
@@ -62,7 +62,7 @@ objects:
       gateways:
         - simple-ingressgateway-gw
       hosts:
-        - ${URL}
+        - ${SIMPLE_URL}
       http:
         # Ingress -> Приложение
         - route:
@@ -71,7 +71,7 @@ objects:
                 port:
                   number: 8080
 parameters:
-  - name: URL
+  - name: SIMPLE_URL
     description: URL для доступа к ingress
     required: true
   - name: INGRESS_NAME

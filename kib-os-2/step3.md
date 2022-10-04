@@ -9,9 +9,15 @@
 * перечень портов, используемых для организации трафика через Ingress Proxy. Все порты должны быть объявлены в Service Ingress Gateway
 * secret, содержащий сертификаты, которые будут использоваться для настройки соединений. Они должны пыть монтированы в Deployment Ingress Gateway (см. блоки Volumes и VolumeMounts)
 
+Заполните имена проекта и Control Plane в файле
+
+`ingress-params.env`{{open}}
+
 `oc process -f ingress-template.yml --param-file ingress-params.env -o yaml > conf.yml
 oc apply -f conf.yml`{{execute}}
 
 В логах пода Ingress Gateway необходимо дождаться сообщения
 
 `Envoy Proxy is ready`
+
+`oc get logs $(oc get pods -o name | grep ingress | head -n 1)`{{execute}}
