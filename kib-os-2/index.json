@@ -61,7 +61,7 @@
         },
         {
           "file": "req.cnf",
-          "target": "/root"
+          "target": "/root/certs"
         },
         {
           "file": "server.yml",
