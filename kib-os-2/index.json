@@ -60,6 +60,10 @@
           "target": "/root"
         },
         {
+          "file": "req.cnf",
+          "target": "/root"
+        },
+        {
           "file": "server.yml",
           "target": "/root"
         },

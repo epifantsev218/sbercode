@@ -7,7 +7,7 @@ metadata:
     marker: practice
 spec:
   # URL, по которому сервис доступен извне
-  host:
+  host: # Не забудьте заполнить!
   to:
     kind: Service
     # Имя сервиса, куда будет направлен трафик
