@@ -1,11 +1,14 @@
 Применим настройки Simple TLS подключения. Simple TLS - односторонняя проверка клиентом сертификата сервера
 
+Уточните параметры генерируемого сертификата в файле
+
 `simple-params.env`{{open}}
 
-`export $(cat simple-params.env | xargs)`{{execute}}
+Значение параметра SIMPLE_URL должно присутствовать в alt_names сертификата
 
 `oc process -f simple.yml --param-file simple-params.env -o yaml > conf.yml
-oc apply -f conf.yml`{{execute}}
+oc apply -f conf.yml
+export $(cat simple-params.env | xargs)`{{execute}}
 
 Выполним запрос. В результате увидим ошибку SSL Handshake, т.к. клиент не доверяет самоподписанному серверному
 сертификату

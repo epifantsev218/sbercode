@@ -4,15 +4,14 @@
 
 `easy-params.env`{{open}}
 
-`export $(cat easy-params.env | xargs)`{{execute}}
-
 Доступное имя хоста можно получить с помощью команды
 
 `oc get ingresses.config/cluster -o jsonpath={.spec.domain}`{{execute}}
 
 Применяем конфиги Openshift
 `oc process -f easy.yml --param-file easy-params.env -o yaml > conf.yml
-oc apply -f conf.yml`{{execute}}
+oc apply -f conf.yml
+export $(cat easy-params.env | xargs)`{{execute}}
 
 Проверяем соединение
 

@@ -1,6 +1,12 @@
-Для настройки нужно знать, к какому Control Plane подключен проект. Найдем название в описании проекта
+Для настройки нужно знать имя проекта, а также имя Control Plane, к которой подключен проект. Найдем название в описании проекта
 
-`oc describe project ci00706316-idevgen2-loans-for-business-dev2  | grep member-of`{{execute}}
+Получим имя проекта
+
+`oc project -q`{{execute}}
+
+Получим имя Control Plane
+
+`oc describe project $(oc project -q) | grep member-of`{{execute}}
 
 Создадим Deployment Ingress Gateway. Для настройки требуется:
 * имя проекта
