@@ -6,7 +6,7 @@
 
 Получим имя Control Plane
 
-`oc describe project $(oc project -q) | grep member-of`{{execute}}
+`oc describe project $(oc project -q) | grep member-of | head -n 1 | cut -d '=' -f2`{{execute}}
 
 Создадим Deployment Ingress Gateway. Для настройки требуется:
 * имя проекта

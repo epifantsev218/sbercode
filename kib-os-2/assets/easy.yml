@@ -19,7 +19,7 @@ objects:
         name: server
       port:
         # Важно! Здесь указывается название (name) порта в Service, а не номер
-        targetPort: tcp-8080
+        targetPort: tcp-80
 parameters:
   - name: EASY_URL
     description: URL для доступа к сервису

@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - image: >-
-            registry.delta.sbrf.ru/base/hello-openshift:v3.9.0
+            nexus.local:5000/kib/http-server:1.0.0
           name: server
           resources:
             limits:
@@ -39,9 +39,7 @@ metadata:
 spec:
   ports:
     # Обратите внимание на название порта
-    - name: tcp-8080
-      port: 8080
-    - name: tcp-8888
-      port: 8888
+    - name: tcp-80
+      port: 80
   selector:
     app: server
