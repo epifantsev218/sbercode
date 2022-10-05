@@ -21,4 +21,4 @@ export $(cat easy-params.env | xargs)`{{execute}}
 
 `oc logs $(oc get pods -o name | grep server | head -n 1 | cut -d '/' -f2) -c istio-proxy`{{execute}}
 
-`[2022-05-28T10:51:05.927Z] "- - -" 0 - "-" "-" 357 134 5026 - "-" "-" "-" "-" "127.0.0.1:8080" inbound|8080|tcp-8080|server.ci00706316-idevgen2-loans-for-business-dev2.svc.cluster.local 127.0.0.1:41212 29.64.208.76:8080 29.64.247.1:47428 - -`
+`[2022-10-05T20:18:30.387Z] "- - -" 0 - - - "-" 1503 600 15005 - "-" "-" "-" "-" "127.0.0.1:8080" inbound|8080|| 127.0.0.1:45842 10.131.1.124:8080 10.128.0.1:44094 - -`

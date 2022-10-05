@@ -9,7 +9,6 @@ spec:
   selector:
     matchLabels:
       app: server
-      maistra.io/expose-route: "true"
   template:
     metadata:
       annotations:
@@ -18,11 +17,13 @@ spec:
         sidecar.istio.io/proxyCPULimit: 100m
       labels:
         app: server
+        maistra.io/expose-route: "true"
     spec:
       containers:
         - image: >-
             nexus.local:5000/kib/http-server:1.0.0
           name: server
+          imagePullPolicy: Always
           resources:
             limits:
               cpu: 100m
