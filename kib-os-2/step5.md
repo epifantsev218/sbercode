@@ -24,6 +24,6 @@ OpenSSL
 
 В логах Ingress Proxy видим успешный запрос через порт 3001
 
-`oc get logs $(oc get pods -o name | grep ingress | head -n 1)`{{execute}}
+`oc logs $(oc get pods -o name | grep ingress | head -n 1)`{{execute}}
 
 `[2022-05-28T10:11:04.255Z] "GET / HTTP/2" 200 - "-" "-" 0 17 2 1 "29.64.242.1" "curl/7.78.0" "b421ee57-cb8c-9a48-a426-91eebb138155" "mutual-test-server.apps.dev-gen2.delta.sbrf.ru" "29.64.49.192:8080" outbound|8080||server.ci00706316-idevgen2-loans-for-business-dev2.svc.cluster.local 29.64.41.171:56146 29.64.41.171:3001 29.64.242.1:59398 mutual-test-server.apps.dev-gen2.delta.sbrf.ru -`

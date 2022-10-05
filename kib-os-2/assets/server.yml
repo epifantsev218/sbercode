@@ -1,4 +1,3 @@
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -10,6 +9,7 @@ spec:
   selector:
     matchLabels:
       app: server
+      maistra.io/expose-route: "true"
   template:
     metadata:
       annotations:

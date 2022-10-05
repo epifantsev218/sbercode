@@ -26,4 +26,4 @@ oc apply -f conf.yml`{{execute}}
 
 `Envoy Proxy is ready`
 
-`oc get logs $(oc get pods -o name | grep ingress | head -n 1)`{{execute}}
+`oc logs $(oc get pods -o name | grep ingress | head -n 1)`{{execute}}
