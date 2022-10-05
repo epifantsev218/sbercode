@@ -174,20 +174,6 @@ objects:
                   value: 'true'
                 - name: PROXY_XDS_VIA_AGENT
                   value: 'true'
-              securityContext:
-                capabilities:
-                  drop:
-                    - ALL
-                    - KILL
-                    - MKNOD
-                    - SETGID
-                    - SETUID
-                privileged: false
-                runAsUser: 1000700001
-                runAsGroup: 1000700001
-                runAsNonRoot: true
-                readOnlyRootFilesystem: true
-                allowPrivilegeEscalation: false
               ports:
                 - name: http-envoy-prom
                   containerPort: 15090

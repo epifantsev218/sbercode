@@ -15,8 +15,7 @@ export $(cat simple-params.env | xargs)`{{execute}}
 
 `curl -v https://${SIMPLE_URL}`{{execute}}
 
-`curl: (60) schannel: SEC_E_UNTRUSTED_ROOT (0x80090325) - Цепочка сертификатов выпущена центром сертификации, не имеющим доверия.
-More details here: https://curl.se/docs/sslcerts.html                                                                                                                                                                                                                                                                                                                                                                                 curl failed to verify the legitimacy of the server and therefore could not establish a secure connection to it. To learn more about this situation and how to fix it, please visit the web page mentioned above.`
+`curl: (60) SSL certificate problem: self signed certificate`
 
 Добавим сертификат в перечень доверенных и запрос будет обработан успешно. В логах Ingress Proxy видим успешный запрос
 через порт 3000
@@ -25,4 +24,4 @@ More details here: https://curl.se/docs/sslcerts.html                           
 
 `oc logs $(oc get pods -o name | grep ingress | head -n 1)`{{execute}}
 
-`[2022-05-28T10:06:48.715Z] "GET / HTTP/1.1" 200 - "-" "-" 0 17 11 11 "29.64.247.1" "curl/7.79.1" "0621db1b-a387-9140-987f-9023608d0479" "simple-test-server.apps.dev-gen2.delta.sbrf.ru" "29.64.49.192:8080" outbound|8080||server.ci00706316-idevgen2-loans-for-business-dev2.svc.cluster.local 29.64.41.171:40186 29.64.41.171:3000 29.64.247.1:33990 simple-test-server.apps.dev-gen2.delta.sbrf.ru -`
+`[2022-10-05T20:56:15.535Z] "GET / HTTP/2" 200 - via_upstream - "-" 0 44 1 1 "10.129.0.1" "curl/7.68.0" "841d47fc-a5bb-939f-b41c-2be4fca427c2" "simple.apps.sbc-okd.pcbltools.ru" "10.128.3.112:8080" outbound|8080||server.sbercode-654d59b9-0701-4932-a22d-bb524ae4bb5b-work.svc.cluster.local 10.131.1.130:52342 10.131.1.130:3000 10.129.0.1:38002 simple.apps.sbc-okd.pcbltools.ru -`

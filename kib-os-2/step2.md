@@ -24,5 +24,5 @@
 * Открытой части
 * Файла с цепочками УЦ. Так как мы используем самоподписанный сертификат, используем его вместо цепочек УЦ
 
-`oc create secret generic ingress-certs --from-file=key.pem=./certs/key.pem --from-file=crt.pem=./certs/crt.pem --from-file=ca.pem=./certs/crt.pem -o yaml --dry-run --validate > conf.yml;
-oc apply -f conf.yml`{{execute}}
+`oc create secret generic ingress-certs --from-file=key.pem=./certs/key.pem --from-file=crt.pem=./certs/crt.pem --from-file=ca.pem=./certs/crt.pem -o yaml --dry-run --validate > ./certs/conf.yml;
+oc apply -f ./certs/conf.yml`{{execute}}
