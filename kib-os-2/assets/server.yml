@@ -1,4 +1,3 @@
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -14,20 +13,24 @@ spec:
     metadata:
       annotations:
         sidecar.istio.io/inject: 'true'
+        sidecar.istio.io/proxyCPU: 100m
+        sidecar.istio.io/proxyCPULimit: 100m
       labels:
         app: server
+        maistra.io/expose-route: "true"
     spec:
       containers:
         - image: >-
-            registry.delta.sbrf.ru/base/hello-openshift:v3.9.0
+            nexus.local:5000/kib/http-server:1.0.0
           name: server
+          imagePullPolicy: Always
           resources:
             limits:
-              cpu: 0.5
-              memory: 512Mi
+              cpu: 100m
+              memory: 128Mi
             requests:
-              cpu: 0.5
-              memory: 512Mi
+              cpu: 100m
+              memory: 128Mi
 ---
 kind: Service
 apiVersion: v1
@@ -41,7 +44,5 @@ spec:
     # Обратите внимание на название порта
     - name: tcp-8080
       port: 8080
-    - name: tcp-8888
-      port: 8888
   selector:
     app: server
