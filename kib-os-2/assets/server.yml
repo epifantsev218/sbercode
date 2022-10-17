@@ -13,8 +13,6 @@ spec:
     metadata:
       annotations:
         sidecar.istio.io/inject: 'true'
-        sidecar.istio.io/proxyCPU: 100m
-        sidecar.istio.io/proxyCPULimit: 100m
       labels:
         app: server
         maistra.io/expose-route: "true"
