@@ -1,5 +1,5 @@
 #!/bin/bash -x
-#source ~/.bashrc
+source ~/.bashrc
 
 OUT_FILE=~/connection.env
 DONE_FILE=/usr/local/etc/k8s.sh.done

@@ -1,4 +1,5 @@
 #!/bin/bash
+source ~/.bashrc
 
 function url {
     grep "$1" "/root/$2-params.env" | cut -d'=' -f2
@@ -16,9 +17,9 @@ MUTUAL_URL=$(url 'MUTUAL_URL' 'mutual')
 SIMPLE_SAN=$(san $SIMPLE_URL)
 MUTUAL_SAN=$(san $MUTUAL_URL)
 # Проверка HTTP вызова
-EASY_RESULT="$(curl -o /dev/null -s -w "%{http_code}\n" http://${EASY_URL})"
-SIMPLE_RESULT="$(curl -o /dev/null --cacert ./certs/crt.pem -s -w "%{http_code}\n" https://${SIMPLE_URL})"
-MUTUAL_RESULT="$(curl -o /dev/null --cacert ./certs/crt.pem --cert ./certs/crt.pem --key ./certs/key.pem -s -w "%{http_code}\n" https://${MUTUAL_URL})"
+EASY_RESULT="$(curl -o /dev/null -s -w "%{http_code} %{errormsg}\n" http://${EASY_URL})"
+SIMPLE_RESULT="$(curl -o /dev/null --cacert ./certs/crt.pem -s -w "%{http_code} %{errormsg}\n" https://${SIMPLE_URL})"
+MUTUAL_RESULT="$(curl -o /dev/null --cacert ./certs/crt.pem --cert ./certs/crt.pem --key ./certs/key.pem -s -w "%{http_code} %{errormsg}\n" https://${MUTUAL_URL})"
 # Проверка конфигов Openshift
 EASY_ROUTE=$(oc describe routes | grep ${EASY_URL} | wc -l)
 SIMPLE_ROUTE=$(oc describe routes | grep ${SIMPLE_URL} | wc -l)
