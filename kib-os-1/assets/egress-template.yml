@@ -40,8 +40,8 @@ objects:
           containers:
             - resources:
                 limits:
-                  cpu: '1'
-                  memory: 1Gi
+                  cpu: 200m
+                  memory: 256Mi
                 requests:
                   cpu: 100m
                   memory: 128Mi
