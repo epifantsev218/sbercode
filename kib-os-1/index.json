@@ -41,8 +41,7 @@
         },
         {
           "file": "kafka.sh",
-          "target": "/root",
-          "chmod": "+x"
+          "target": "/root"
         },
         {
           "file": "kafka-client.yml",
