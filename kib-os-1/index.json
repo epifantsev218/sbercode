@@ -41,7 +41,7 @@
         },
         {
           "file": "kafka.sh",
-          "target": "/usr/local/autostart-scripts.d",
+          "target": "/root",
           "chmod": "+x"
         },
         {
