@@ -10,7 +10,7 @@ https://istio.io/latest/docs/reference/config/networking/service-entry/
 `oc process -f easy.yml --param-file connection.env -o yaml > conf.yml
 oc apply -f conf.yml`{{execute}}
 
-Повторим проверку подключения к Kafka. Подключение успешно. 
+Повторим проверку подключения к Kafka. Подключение успешно
 
 `oc rsh $(oc get pods -o name | grep kafka-client | head -n 1)`{{execute}}
 `kafka-topics.sh --bootstrap-server $KAFKA_ADDRESS --list`{{execute}}

@@ -22,7 +22,10 @@ sed "s/KAFKA_IP/${kafka_ip}/g" /usr/local/kafka/connection.env >> $OUT_FILE
 ####end
 
 ####create topic
-oc exec $(oc get pods -o name | grep kafka-broker | head -n 1) -- bash -c 'kafka-topics.sh --bootstrap-server localhost:9092 --create --topic test --partitions 1 --replication-factor 1'
+while [[ $(oc get pods -l app.kubernetes.io/name=kafka -o 'jsonpath={..status.conditions[?(@.type=="Ready")].status}') != "True" ]]; do
+   sleep 1
+done
+oc exec $(oc get pods -l app.kubernetes.io/name=kafka -o name | head -n 1) -- bash -c 'kafka-topics.sh --bootstrap-server localhost:9092 --create --topic test --partitions 1 --replication-factor 1'
 ####end
 
 oc config use-context ${work_context}
