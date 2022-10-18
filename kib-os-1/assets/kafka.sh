@@ -1,6 +1,6 @@
 #!/bin/bash -x
 PS1=1
-source ~/.bashrc
+source /root/.bashrc
 
 OUT_FILE=~/connection.env
 DONE_FILE=/usr/local/etc/k8s.sh.done

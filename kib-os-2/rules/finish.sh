@@ -1,6 +1,6 @@
 #!/bin/bash
 PS1=1
-source ~/.bashrc
+source /root/.bashrc
 
 function url {
     grep "$1" "/root/$2-params.env" | cut -d'=' -f2
