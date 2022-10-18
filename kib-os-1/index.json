@@ -59,6 +59,10 @@
         {
           "file": "egress-params.env",
           "target": "/root"
+        },
+        {
+          "file": "correct.yml",
+          "target": "/root"
         }
       ]
     }
