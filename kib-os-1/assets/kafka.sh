@@ -2,8 +2,7 @@
 PS1=1
 source /root/.bashrc
 
-OUT_ENV_FILE=~/connection.env
-OUT_CLIENT_FILE=~/kafka-client.yml
+OUT_FILE=~/connection.env
 DONE_FILE=/usr/local/etc/k8s.sh.done
 
 _user=student
@@ -19,8 +18,7 @@ curr_project=$(oc project -q)
 ####deploy kafka
 sed "s/PROJECT_PLACEHOLDER/${curr_project}/g" /usr/local/kafka/kafka.yml |oc apply -f-
 kafka_ip=$(oc get service kafka -o template --template {{.spec.clusterIP}})
-sed "s/KAFKA_IP/${kafka_ip}/g" /usr/local/kafka/connection.env >> $OUT_ENV_FILE
-sed "s/KAFKA_IP/${kafka_ip}/g" /usr/local/kafka/kafka-client.yml >> $OUT_CLIENT_FILE
+sed "s/KAFKA_IP/${kafka_ip}/g" /usr/local/kafka/connection.env >> $OUT_FILE
 ####end
 
 oc config use-context ${work_context}
