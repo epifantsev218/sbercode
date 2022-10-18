@@ -11,16 +11,16 @@ https://istio.io/latest/docs/reference/config/networking/service-entry/
 oc apply -f conf.yml`{{execute}}
 
 Повторим проверку подключения к Kafka. Подключение успешно. 
-В логах контейнера istio-proxy видим прямое обращение к узлу Kafka
 
 `oc rsh $(oc get pods -o name | grep kafka-client | head -n 1)`{{execute}}
 `kafka-topics.sh --bootstrap-server $KAFKA_ADDRESS --list`{{execute}}
 `exit`{{execute}}
 
+В логах контейнера istio-proxy видим прямое обращение к узлу Kafka
 
-`oc rsh $(oc get pods -o name | grep kafka-client | head -n 1)
-kafka-topics.sh --bootstrap-server $KAFKA_ADDRESS --list
-exit`{{execute}}
+`oc logs $(oc get pods -o name | grep kafka-client | head -n 1) -c istio-proxy`{{execute}}
+
+`[2022-10-18T20:24:03.639Z] "- - -" 0 - - - "-" 85 585 1100 - "-" "-" "-" "-" "172.30.247.31:9092" outbound|9092||kafka.apps.sbc-okd.pcbltools.ru 10.128.2.33:54464 172.30.247.31:9092 10.128.2.33:54460 - -`
 
 Удаляем созданные конфиги
 

@@ -21,5 +21,9 @@ kafka_ip=$(oc get service kafka -o template --template {{.spec.clusterIP}})
 sed "s/KAFKA_IP/${kafka_ip}/g" /usr/local/kafka/connection.env >> $OUT_FILE
 ####end
 
+####create topic
+oc exec $(oc get pods -o name | grep kafka-broker | head -n 1) -- bash -c 'kafka-topics.sh --bootstrap-server localhost:9092 --create --topic test --partitions 1 --replication-factor 1'
+####end
+
 oc config use-context ${work_context}
 touch $DONE_FILE
