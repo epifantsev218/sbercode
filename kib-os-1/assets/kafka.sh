@@ -1,4 +1,5 @@
 #!/bin/bash -x
+PS1=1
 source ~/.bashrc
 
 OUT_FILE=~/connection.env

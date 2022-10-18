@@ -1,4 +1,5 @@
 #!/bin/bash
+PS1=1
 source ~/.bashrc
 
 function url {
