@@ -24,6 +24,9 @@ spec:
             - '-c'
             - while true; do sleep 30; done
           name: kafka-client
+          env:
+            name: KAFKA_ADDRESS
+            value: KAFKA_IP:9092
           resources:
             limits:
               cpu: 0.5
