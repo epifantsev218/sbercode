@@ -51,6 +51,14 @@
         {
           "file": "easy.yml",
           "target": "/root"
+        },
+        {
+          "file": "egress-template.yml",
+          "target": "/root"
+        },
+        {
+          "file": "egress-params.env",
+          "target": "/root"
         }
       ]
     }
