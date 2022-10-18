@@ -41,7 +41,8 @@
         },
         {
           "file": "kafka.sh",
-          "target": "/root"
+          "target": "/usr/local/autostart-scripts.d",
+          "chmod": "+x"
         },
         {
           "file": "kafka-client.yml",
