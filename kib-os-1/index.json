@@ -46,7 +46,7 @@
         },
         {
           "file": "kafka-client.yml",
-          "target": "/usr/local/kafka"
+          "target": "/root"
         },
         {
           "file": "easy.yml",
