@@ -10,10 +10,10 @@ https://istio.io/latest/docs/reference/config/networking/service-entry/
 `oc process -f easy.yml --param-file connection.env -o yaml > conf.yml
 oc apply -f conf.yml`{{execute}}
 
-Повторим проверку подключения к Kafka. Подключение успешно
+Создадим топик на брокере Kafka. Подключение успешно
 
 `oc rsh $(oc get pods -o name | grep kafka-client | head -n 1)`{{execute}}
-`kafka-topics.sh --bootstrap-server $KAFKA_ADDRESS --list`{{execute}}
+`kafka-topics.sh --bootstrap-server $KAFKA_ADDRESS --create --topic test --partitions 1 --replication-factor 1`{{execute}}
 `exit`{{execute}}
 
 В логах контейнера istio-proxy видим прямое обращение к узлу Kafka
