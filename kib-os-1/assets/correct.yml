@@ -88,6 +88,8 @@ objects:
 parameters:
   - name: HOST
     required: true
+  - name: IP
+    required: true
   - name: PORT
     required: true
   - name: PREFIX
