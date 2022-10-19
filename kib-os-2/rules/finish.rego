@@ -62,19 +62,19 @@ error[msg] {
 
 allow[msg] {
 	res := input.route
-    res.easy == "1"
+    res.easy == "2"
 	msg := "[OK] создан Route для HTTP-соединения"
 }
 
 error[msg] {
 	res := input.route
-    res.easy != "1"
+    res.easy != "2"
 	msg := "[ERROR] не создан Route для HTTP-соединения"
 }
 
 allow[msg] {
 	res := input.route
-    res.simple == "1"
+    res.simple == "2"
 	msg := "[OK] создан Route для Simple TLS"
 }
 
