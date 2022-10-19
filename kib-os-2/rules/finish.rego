@@ -146,37 +146,37 @@ deny[msg] {
 
 allow[msg] {
 	res := input.curl
-    res.easy=="200"
+	startswith(res.easy, "200:")
 	msg := "[OK] успешная проверка HTTP-соединения"
 }
 
 error[msg] {
 	res := input.curl
-    res.easy!="200"
+	not startswith(res.easy, "200:")
 	msg := concat(" ", ["[ERROR] ошибка при проверке HTTP соединения. Код ошибки",res.easy])
 }
 
 allow[msg] {
 	res := input.curl
-    res.simple=="200"
+	startswith(res.simple, "200:")
 	msg := "[OK] успешная проверка Simple TLS"
 }
 
 error[msg] {
 	res := input.curl
-    res.simple!="200"
+	not startswith(res.simple, "200:")
 	msg := concat(" ", ["[ERROR] ошибка при проверке Simple TLS. Код ошибки",res.simple])
 }
 
 allow[msg] {
 	res := input.curl
-    res.mutual=="200"
+	startswith(res.mutual, "200:")
 	msg := "[OK] успешная проверка Mutual TLS"
 }
 
 error[msg] {
 	res := input.curl
-    res.mutual!="200"
+	not startswith(res.mutual, "200:")
 	msg := concat(" ", ["[ERROR] ошибка при проверке Mutual TLS. Код ошибки",res.mutual])
 }
 
