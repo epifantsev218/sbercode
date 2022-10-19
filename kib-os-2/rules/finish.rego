@@ -6,7 +6,7 @@ allow[msg] {
 	msg := "[OK] заполнен URL для HTTP-соединения"
 }
 
-deny[msg] {
+error[msg] {
 	res := input.url
     not regex.match(".+\\.apps\\.sbc-okd\\.pcbltools\\.ru", res.easy)
 	msg := "[ERROR] не заполнен URL для HTTP-соединения"
@@ -18,7 +18,7 @@ allow[msg] {
 	msg := "[OK] заполнен URL для Simple TLS"
 }
 
-deny[msg] {
+error[msg] {
 	res := input.url
     not regex.match(".+\\.apps\\.sbc-okd\\.pcbltools\\.ru", res.simple)
 	msg := "[ERROR] не заполнен URL для Simple TLS"
@@ -30,7 +30,7 @@ allow[msg] {
 	msg := "[OK] заполнен URL для Mutual TLS"
 }
 
-deny[msg] {
+error[msg] {
 	res := input.url
     not regex.match(".+\\.apps\\.sbc-okd\\.pcbltools\\.ru", res.mutual)
 	msg := "[ERROR] не заполнен URL для Mutual TLS"
@@ -42,7 +42,7 @@ allow[msg] {
 	msg := "[OK] URL для Simple TLS присутствует в SAN сертификата"
 }
 
-deny[msg] {
+error[msg] {
 	res := input.san
     res.simple != "1"
 	msg := "[ERROR] URL для Simple TLS отсутствует в SAN сертификата"
@@ -54,7 +54,7 @@ allow[msg] {
 	msg := "[OK] URL для Mutual TLS присутствует в SAN сертификата"
 }
 
-deny[msg] {
+error[msg] {
 	res := input.san
     res.mutual != "1"
 	msg := "[ERROR] URL для Mutual TLS отсутствует в SAN сертификата"
@@ -66,7 +66,7 @@ allow[msg] {
 	msg := "[OK] создан Route для HTTP-соединения"
 }
 
-deny[msg] {
+error[msg] {
 	res := input.route
     res.easy != "1"
 	msg := "[ERROR] не создан Route для HTTP-соединения"
@@ -78,7 +78,7 @@ allow[msg] {
 	msg := "[OK] создан Route для Simple TLS"
 }
 
-deny[msg] {
+error[msg] {
 	res := input.route
     res.simple != "1"
 	msg := "[ERROR] не создан Route для Simple TLS"
@@ -90,7 +90,7 @@ allow[msg] {
 	msg := "[OK] создан Route для Mutual TLS"
 }
 
-deny[msg] {
+error[msg] {
 	res := input.route
     res.mutual != "1"
 	msg := "[ERROR] не создан Route для Mutual TLS"
@@ -102,7 +102,7 @@ allow[msg] {
 	msg := "[OK] создан Gateway для Simple TLS"
 }
 
-deny[msg] {
+error[msg] {
 	res := input.gw
     res.simple != "1"
 	msg := "[ERROR] не создан Gateway для Simple TLS"
@@ -114,7 +114,7 @@ allow[msg] {
 	msg := "[OK] создан Gateway для Mutual TLS"
 }
 
-deny[msg] {
+error[msg] {
 	res := input.vs
     res.mutual != "1"
 	msg := "[ERROR] не создан Virtual Service для Mutual TLS"
@@ -126,7 +126,7 @@ allow[msg] {
 	msg := "[OK] создан Virtual Service для Simple TLS"
 }
 
-deny[msg] {
+error[msg] {
 	res := input.vs
     res.simple != "1"
 	msg := "[ERROR] не создан Virtual Service для Simple TLS"
@@ -138,7 +138,7 @@ allow[msg] {
 	msg := "[OK] создан Virtual Service для Mutual TLS"
 }
 
-deny[msg] {
+error[msg] {
 	res := input.gw
     res.mutual != "1"
 	msg := "[ERROR] не создан Gateway для Mutual TLS"
@@ -150,7 +150,7 @@ allow[msg] {
 	msg := "[OK] успешная проверка HTTP-соединения"
 }
 
-error[msg] {
+deny[msg] {
 	res := input.curl
 	not startswith(res.easy, "200:")
 	msg := concat(" ", ["[ERROR] ошибка при проверке HTTP соединения. Код ошибки",res.easy])
@@ -162,7 +162,7 @@ allow[msg] {
 	msg := "[OK] успешная проверка Simple TLS"
 }
 
-error[msg] {
+deny[msg] {
 	res := input.curl
 	not startswith(res.simple, "200:")
 	msg := concat(" ", ["[ERROR] ошибка при проверке Simple TLS. Код ошибки",res.simple])
@@ -174,7 +174,7 @@ allow[msg] {
 	msg := "[OK] успешная проверка Mutual TLS"
 }
 
-error[msg] {
+deny[msg] {
 	res := input.curl
 	not startswith(res.mutual, "200:")
 	msg := concat(" ", ["[ERROR] ошибка при проверке Mutual TLS. Код ошибки",res.mutual])
