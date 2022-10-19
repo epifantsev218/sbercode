@@ -62,37 +62,37 @@ error[msg] {
 
 allow[msg] {
 	res := input.route
-    res.easy == "2"
+    res.easy != "0"
 	msg := "[OK] создан Route для HTTP-соединения"
 }
 
 error[msg] {
 	res := input.route
-    res.easy != "2"
+    res.easy == "0"
 	msg := "[ERROR] не создан Route для HTTP-соединения"
 }
 
 allow[msg] {
 	res := input.route
-    res.simple == "2"
+    res.simple != "0"
 	msg := "[OK] создан Route для Simple TLS"
 }
 
 error[msg] {
 	res := input.route
-    res.simple != "1"
+    res.simple == "0"
 	msg := "[ERROR] не создан Route для Simple TLS"
 }
 
 allow[msg] {
 	res := input.route
-    res.mutual == "1"
+    res.mutual != "0"
 	msg := "[OK] создан Route для Mutual TLS"
 }
 
 error[msg] {
 	res := input.route
-    res.mutual != "1"
+    res.mutual == "0"
 	msg := "[ERROR] не создан Route для Mutual TLS"
 }
 
