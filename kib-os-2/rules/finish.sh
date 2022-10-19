@@ -19,8 +19,8 @@ SIMPLE_SAN=$(san $SIMPLE_URL)
 MUTUAL_SAN=$(san $MUTUAL_URL)
 # Проверка HTTP вызова
 EASY_RESULT="$(curl -o /dev/null -s -w "%{http_code}: %{errormsg}\n" http://${EASY_URL})"
-SIMPLE_RESULT="$(curl -o /dev/null --cacert ./certs/crt.pem -s -w "%{http_code} %{errormsg}\n" https://${SIMPLE_URL})"
-MUTUAL_RESULT="$(curl -o /dev/null --cacert ./certs/crt.pem --cert ./certs/crt.pem --key ./certs/key.pem -s -w "%{http_code} %{errormsg}\n" https://${MUTUAL_URL})"
+SIMPLE_RESULT="$(curl -o /dev/null --cacert ./certs/crt.pem -s -w "%{http_code}: %{errormsg}\n" https://${SIMPLE_URL})"
+MUTUAL_RESULT="$(curl -o /dev/null --cacert ./certs/crt.pem --cert ./certs/crt.pem --key ./certs/key.pem -s -w "%{http_code}: %{errormsg}\n" https://${MUTUAL_URL})"
 # Проверка конфигов Openshift
 EASY_ROUTE=$(oc describe routes 2>&1 | grep ${EASY_URL} | wc -l)
 SIMPLE_ROUTE=$(oc describe routes 2>&1 | grep ${SIMPLE_URL} | wc -l)
