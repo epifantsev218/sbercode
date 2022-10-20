@@ -19,7 +19,7 @@ curr_project=$(oc project -q)
 pgpass=$(cat /proc/sys/kernel/random/uuid)
 oc create secret generic pg-postgresql --from-literal=postgres-password="$pgpass" --dry-run=client -oyaml \
 | oc apply -f-
-oc apply -f /usr/local/pg/postgres.yml -n "${curr_project}"
+oc apply -f /usr/local/pg/postgresql.yml -n "${curr_project}"
 pg_ip=$(oc get service pg -o template --template {{.spec.clusterIP}})
 sed "s/PG_IP/${pg_ip}/g" /usr/local/pg/connection.env >> $OUT_FILE
 ####end
