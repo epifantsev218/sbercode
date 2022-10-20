@@ -57,7 +57,7 @@
           "target": "/root"
         },
         {
-          "file": "correct.yml",
+          "file": "connection.yml",
           "target": "/root"
         }
       ]
