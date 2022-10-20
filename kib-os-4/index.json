@@ -36,6 +36,10 @@
           "target": "/usr/local/pg"
         },
         {
+          "file": "connection.yml",
+          "target": "/root"
+        },
+        {
           "file": "postgres.sh",
           "target": "/usr/local/autostart-scripts.d",
           "chmod": "+x"
