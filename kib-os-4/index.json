@@ -28,7 +28,7 @@
     "assets": {
       "host01": [
         {
-          "file": "postgres.yml",
+          "file": "postgresql.yml",
           "target": "/usr/local/pg"
         },
         {
@@ -40,12 +40,12 @@
           "target": "/root"
         },
         {
-          "file": "postgres.sh",
+          "file": "postgresql.sh",
           "target": "/usr/local/autostart-scripts.d",
           "chmod": "+x"
         },
         {
-          "file": "postgres-client.yml",
+          "file": "postgresql-client.yml",
           "target": "/root"
         },
         {
