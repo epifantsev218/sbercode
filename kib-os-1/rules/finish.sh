@@ -13,8 +13,8 @@ EGRESS_NAME=$(param 'EGRESS_NAME' 'egress-params')
 KAFKA_HOST=$(param 'HOST' 'connection')
 KAFKA_PORT=$(param 'PORT' 'connection')
 # Проверка вызовов
-SIDECAR_LOG="$(oc logs $(oc get pods -o name | grep kafka-client | head -n 1) -c istio-proxy | grep $EGRESS_NAME | grep $KAFKA_PORT | wc -l)"
-EGRESS_LOG="$(oc logs $(oc get pods -o name | grep egress | head -n 1) | grep $KAFKA_HOST | grep $KAFKA_PORT | wc -l)"
+SIDECAR_LOG="$(oc logs $(oc get pods -o name | grep kafka-client | head -n 1) -c istio-proxy 2>&1 | grep $EGRESS_NAME | grep $KAFKA_PORT | wc -l)"
+EGRESS_LOG="$(oc logs $(oc get pods -o name | grep egress | head -n 1) 2>&1 | grep $KAFKA_HOST | grep $KAFKA_PORT | wc -l)"
 # Проверка конфигов Openshift
 GW=$(oc describe gateways 2>&1 | grep ${KAFKA_HOST} | wc -l)
 VS=$(oc describe virtualservices 2>&1 | grep ${KAFKA_HOST} | wc -l)
