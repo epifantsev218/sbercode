@@ -7,7 +7,7 @@ function param {
 }
 
 # Проверка пода egress
-EGRESS_POD=$($(oc get pods -o name | grep egress | wc -l)
+EGRESS_POD=$(oc get pods -o name | grep egress | wc -l)
 # Параметры Egress
 EGRESS_NAME=$(param 'EGRESS_NAME' 'egress-params')
 KAFKA_HOST=$(param 'HOST' 'connection')
