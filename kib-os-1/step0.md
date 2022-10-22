@@ -12,7 +12,7 @@
 
 `oc rsh $(oc get pods -o name | grep kafka-client | head -n 1)`{{execute}}
 
-Проверяем подключение к кластеру Kafka
+Проверяем подключение к брокеру Kafka
 
 `kafka-topics.sh --bootstrap-server $KAFKA_ADDRESS --list`{{execute}}
 

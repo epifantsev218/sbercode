@@ -5,7 +5,7 @@
 `oc process -f connection.yml --param-file connection.env -o yaml > conf.yml
 oc apply -f conf.yml`{{execute}}
 
-Повторим проверку подключения к Kafka. Подключение успешно
+Повторим проверку подключения к PostgreSQL. Подключение успешно
 
 `oc rsh $(oc get pods -o name | grep postgresql-client | head -n 1)`{{execute}}
 `pg_isready -h pg.apps.sbc-okd.pcbltools.ru -p 5432`{{execute}}

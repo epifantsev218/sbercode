@@ -13,7 +13,7 @@
 
 `oc rsh $(oc get pods -o name | grep postgresql-client | head -n 1)`{{execute}}
 
-Проверяем подключение к кластеру Kafka
+Проверяем подключение к экземпляру PostgreSQL
 
 `pg_isready -h pg.apps.sbc-okd.pcbltools.ru -p 5432`{{execute}}
 

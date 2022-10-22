@@ -8,7 +8,7 @@
 
 `oc describe project $(oc project -q) | grep member-of | head -n 1 | cut -d '=' -f2`{{execute}}
 
-Создадим Deployment Ingress Gateway. Для настройки требуется:
+Создадим Deployment Egress Gateway. Для настройки требуется:
 * имя проекта
 * имя Control Plane
 * название сервиса Egress. Название должно содержать КЭ АС. Это требование сопровождения Istio
