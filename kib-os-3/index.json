@@ -101,7 +101,15 @@
           "target": "/root"
         },
         {
+          "file": "easy.yml",
+          "target": "/root"
+        },
+        {
           "file": "simple.yml",
+          "target": "/root"
+        },
+        {
+          "file": "mutual.yml",
           "target": "/root"
         }
       ]
