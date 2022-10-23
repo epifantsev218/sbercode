@@ -21,6 +21,13 @@ spec:
         - image: >-
             nexus.local:5000/kib/http-server:1.0.0
           name: client
+          env:
+            - name: EASY_ADDRESS
+              value: EASY_ADDRESS_PLACEHOLDER
+            - name: SIMPLE_ADDRESS
+              value: SIMPLE_ADDRESS_PLACEHOLDER
+            - name: MUTUAL_ADDRESS
+              value: MUTUAL_ADDRESS_PLACEHOLDER
           imagePullPolicy: Always
           resources:
             limits:

@@ -48,6 +48,7 @@ oc apply -f "${os_dir}/conf.yml"
 sed "s/EASY_URL_PLACEHOLDER/${easy_url}/g" "${template_dir}/easy-params.env" >> "${task_dir}/easy-params.env"
 sed "s/SIMPLE_URL_PLACEHOLDER/${simple_url}/g" "${template_dir}/simple-params.env" >> "${task_dir}/simple-params.env"
 sed "s/MUTUAL_URL_PLACEHOLDER/${mutual_url}/g" "${template_dir}/mutual-params.env" >> "${task_dir}/mutual-params.env"
+sed "s/EASY_URL_PLACEHOLDER/${easy_url}/g; s/SIMPLE_URL_PLACEHOLDER/${simple_url}/g; s/MUTUAL_URL_PLACEHOLDER/${mutual_url}/g" "${template_dir}/client.yml" >> "${os_dir}/client.yml"
 
-#oc config use-context ${work_context}
+oc config use-context ${work_context}
 touch $DONE_FILE

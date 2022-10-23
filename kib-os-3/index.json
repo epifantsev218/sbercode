@@ -41,6 +41,10 @@
           "chmod": "+x"
         },
         {
+          "file": "client",
+          "target": "/usr/local/template"
+        },
+        {
           "file": "easy-server-params.env",
           "target": "/usr/local/template"
         },
