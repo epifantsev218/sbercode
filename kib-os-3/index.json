@@ -41,7 +41,7 @@
           "chmod": "+x"
         },
         {
-          "file": "client",
+          "file": "client.yml",
           "target": "/usr/local/template"
         },
         {
