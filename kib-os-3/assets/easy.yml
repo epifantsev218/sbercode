@@ -1,0 +1,31 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  name: easy-template
+objects:
+  # ServiceEntry аналогичен предыдыщему варианту
+  - apiVersion: networking.istio.io/v1alpha3
+    kind: ServiceEntry
+    metadata:
+      name: ${PREFIX}-se
+      labels:
+        marker: practice
+    spec:
+      exportTo:
+        - .
+      hosts:
+        - ${HOST}
+      location: MESH_EXTERNAL
+      ports:
+        # В ServiceEntry указываем 2 порта, т.к. от приложения идет HTTP вызов, а от Egress - HTTPS
+        - name: http-${PORT}
+          number: ${{PORT}}
+          protocol: HTTP
+      resolution: DNS
+parameters:
+  - name: HOST
+    required: true
+  - name: PORT
+    required: true
+  - name: PREFIX
+    required: true
