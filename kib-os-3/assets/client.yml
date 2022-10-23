@@ -19,8 +19,12 @@ spec:
     spec:
       containers:
         - image: >-
-            nexus.local:5000/kib/http-server:1.0.0
+            nexus.local:5000/kib/http-client:1.0.0
           name: client
+          command:
+            - sh
+            - '-c'
+            - while true; do sleep 30; done
           env:
             - name: EASY_ADDRESS
               value: EASY_ADDRESS_PLACEHOLDER

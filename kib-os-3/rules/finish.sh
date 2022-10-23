@@ -11,9 +11,9 @@ EASY_URL=$(url 'HOST' 'easy')
 SIMPLE_URL=$(url 'HOST' 'simple')
 MUTUAL_URL=$(url 'HOST' 'mutual')
 # Проверка HTTP вызова
-EASY_RESULT="$(oc exec $(oc get pods -o name | grep client | head -n 1) -- bash -c 'curl -o /dev/null -w "%{http_code}: \n" http://$EASY_ADDRESS' 2>/dev/null)"
-SIMPLE_RESULT="$(oc exec $(oc get pods -o name | grep client | head -n 1) -- bash -c 'curl -o /dev/null -w "%{http_code}: \n" http://$SIMPLE_ADDRESS' 2>/dev/null)"
-MUTUAL_RESULT="$(oc exec $(oc get pods -o name | grep client | head -n 1) -- bash -c 'curl -o /dev/null -w "%{http_code}: \n" http://$MUTUAL_ADDRESS' 2>/dev/null)"
+EASY_RESULT="$(oc exec $(oc get pods -o name | grep client | head -n 1) -- bash -c 'curl -o /dev/null -w "%{http_code}: %{errormsg}\n" http://$EASY_ADDRESS' 2>/dev/null)"
+SIMPLE_RESULT="$(oc exec $(oc get pods -o name | grep client | head -n 1) -- bash -c 'curl -o /dev/null -w "%{http_code}: %{errormsg}\n" http://$SIMPLE_ADDRESS' 2>/dev/null)"
+MUTUAL_RESULT="$(oc exec $(oc get pods -o name | grep client | head -n 1) -- bash -c 'curl -o /dev/null -w "%{http_code}: %{errormsg}\n" http://$MUTUAL_ADDRESS' 2>/dev/null)"
 # Проверка конфигов Openshift
 SIMPLE_GW=$(oc describe gateways 2>&1 | grep ${SIMPLE_URL} | wc -l)
 MUTUAL_GW=$(oc describe gateways 2>&1 | grep ${MUTUAL_URL} | wc -l)
