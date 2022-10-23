@@ -1,78 +1,121 @@
 apiVersion: template.openshift.io/v1
 kind: Template
 metadata:
-  name: ingressgateway-routing-template
+  name: egressgateway-template
 objects:
-  # Gateway для обработки трафика, входящего в Ingress Proxy (https://istio.io/latest/docs/reference/config/networking/gateway/)
+  # ServiceEntry аналогичен предыдыщему варианту
+  - apiVersion: networking.istio.io/v1alpha3
+    kind: ServiceEntry
+    metadata:
+      name: ${PREFIX}-se
+      labels:
+        marker: practice
+    spec:
+      exportTo:
+        - .
+      hosts:
+        - ${HOST}
+      location: MESH_EXTERNAL
+      ports:
+        # В ServiceEntry указываем 2 порта, т.к. от приложения идет HTTP вызов, а от Egress - HTTPS
+        - name: https-${HTTPS_PORT}
+          number: ${{HTTPS_PORT}}
+          protocol: HTTPS
+        - name: http-${HTTP_PORT}
+          number: ${{HTTP_PORT}}
+          protocol: HTTP
+      resolution: DNS
+  # Gateway для обработки трафика, входящего в Egress Proxy (https://istio.io/latest/docs/reference/config/networking/gateway/)
   - apiVersion: networking.istio.io/v1alpha3
     kind: Gateway
     metadata:
-      name: simple-ingressgateway-gw
+      name: ${PREFIX}-gw
       labels:
         marker: practice
     spec:
       selector:
-        istio: ${INGRESS_NAME}
+        istio: ${EGRESS_NAME}
       servers:
         - hosts:
-            - ${SIMPLE_URL}
+            - ${HOST}
           port:
-            name: https-3000
-            number: 3000
-            protocol: HTTPS
-          tls:
-            # Файлы должны присутствовать в подах Ingress Gateway
-            caCertificates: /etc/istio/ingress-certs/ca.pem
-            # Определение режима TLS
-            mode: SIMPLE
-            privateKey: /etc/istio/ingress-certs/key.pem
-            serverCertificate: /etc/istio/ingress-certs/crt.pem
-  # Route (https://docs.openshift.com/container-platform/4.7/networking/routes/route-configuration.html), описывающий внешнюю точку доступа к ресурсам внутри Openshift
-  - apiVersion: route.openshift.io/v1
-    kind: Route
-    metadata:
-      annotations:
-        # Важно! Аннотация позволяет равномерно распределять трафик между репликами Ingress Gateway. Если ее не указать, все запросы пойдут в один экземпляр
-        haproxy.router.openshift.io/balance: roundrobin
-      labels:
-        istio: ${INGRESS_NAME}
-        marker: practice
-      name: simple-ingressgateway-https
-    spec:
-      host: ${SIMPLE_URL}
-      port:
-        # Важно! Здесь указывается название (name) порта в Service, а не номер
-        targetPort: https-3000
-      tls:
-        # Используем passthrough, чтобы работать с сертификатами на уровне Istio, а не Openshift
-        termination: passthrough
-      to:
-        kind: Service
-        name: ${INGRESS_NAME}
-  # VirtualService (https://istio.io/latest/docs/reference/config/networking/gateway/), реализующий маршрутизацию трафика от Ingress Proxy к подам приложения
+          name: http-${{EGRESS_PORT}}
+          number: ${{EGRESS_PORT}}
+          protocol: HTTP
+  # VirtualService (https://istio.io/latest/docs/reference/config/networking/gateway/), реализующие:
+  # - перенаправление обращений к внешнему узлу на Egress Proxy
+  # - перенаправление трафика из Egress Proxy на внешний узел
   - apiVersion: networking.istio.io/v1alpha3
     kind: VirtualService
     metadata:
-      name: simple-ingressgateway-vs
+      name: ${PREFIX}-vs
       labels:
         marker: practice
     spec:
       exportTo:
         - .
       gateways:
-        - simple-ingressgateway-gw
+        - ${PREFIX}-gw
+        - mesh
       hosts:
-        - ${SIMPLE_URL}
+        - ${HOST}
+      # Этот пункт важен. Для TCP отдельный конфиг
       http:
-        # Ingress -> Приложение
-        - route:
+        # Приложение -> Egress
+        - match:
+            - gateways:
+                - mesh
+              # HTTP-порт для перенаправления на Egress
+              port: ${{HTTP_PORT}}
+          route:
             - destination:
-                host: server
+                host: ${EGRESS_NAME}
+                # Порт Egress Proxy
                 port:
-                  number: 8080
+                  number: ${{EGRESS_PORT}}
+        # Egress -> внешний узел
+        - match:
+            - gateways:
+                - ${PREFIX}-gw
+                # Порт Egress Proxy
+              port: ${{EGRESS_PORT}}
+          route:
+            - destination:
+                host: ${HOST}
+                # HTTPS-порт для перенаправления из Egress
+                port:
+                  number: ${{HTTPS_PORT}}
+  - apiVersion: networking.istio.io/v1alpha3
+    kind: DestinationRule
+    metadata:
+      name: ${PREFIX}-dr
+      labels:
+        marker: practice
+    spec:
+      host: ${HOST}
+      exportTo:
+        - .
+      trafficPolicy:
+        loadBalancer:
+          simple: ROUND_ROBIN
+      portLevelSettings:
+        - port:
+            number: 443
+          tls:
+            # Цепочки доверенных УЦ
+            caCertificates: /etc/istio/egress-certs/crt.pem
+            # Для режима SIMPLE клиентский сертификат не требуется
+            mode: SIMPLE
 parameters:
-  - name: SIMPLE_URL
-    description: URL для доступа к ingress
+  - name: HOST
     required: true
-  - name: INGRESS_NAME
+  - name: HTTP_PORT
+    required: true
+  - name: HTTPS_PORT
+    required: true
+  - name: PREFIX
+    required: true
+  - name: EGRESS_NAME
+    required: true
+  - name: EGRESS_PORT
     required: true

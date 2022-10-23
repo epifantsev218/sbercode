@@ -136,6 +136,8 @@ objects:
                   protocol: TCP
               imagePullPolicy: Always
               volumeMounts:
+                - mountPath: /etc/istio/egress-certs
+                  name: egress-certs
                 - name: istiod-ca-cert
                   mountPath: /var/run/secrets/istio
                 - name: istio-data
@@ -214,6 +216,10 @@ objects:
                       items:
                         - key: service-ca.crt
                           path: service-ca.crt
+            - name: egress-certs
+              secret:
+                defaultMode: 256
+                secretName: certs
   - apiVersion: v1
     kind: ConfigMap
     metadata:

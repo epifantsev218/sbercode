@@ -77,15 +77,15 @@
           "target": "/usr/local/template"
         },
         {
-          "file": "easy.yml",
+          "file": "easy-server.yml",
           "target": "/usr/local/os"
         },
         {
-          "file": "simple.yml",
+          "file": "simple-server.yml",
           "target": "/usr/local/os"
         },
         {
-          "file": "mutual.yml",
+          "file": "mutual-server.yml",
           "target": "/usr/local/os"
         },
         {
@@ -95,6 +95,14 @@
         {
           "file": "server.yml",
           "target": "/usr/local/os"
+        },
+        {
+          "file": "egress-template.yml",
+          "target": "/root"
+        },
+        {
+          "file": "simple.yml",
+          "target": "/root"
         }
       ]
     }
