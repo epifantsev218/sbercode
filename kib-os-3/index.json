@@ -53,6 +53,18 @@
           "target": "/usr/local/template"
         },
         {
+          "file": "easy-params.env",
+          "target": "/usr/local/template"
+        },
+        {
+          "file": "simple-params.env",
+          "target": "/usr/local/template"
+        },
+        {
+          "file": "mutual-params.env",
+          "target": "/usr/local/template"
+        },
+        {
           "file": "req.cnf",
           "target": "/usr/local/template"
         },
