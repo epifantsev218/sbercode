@@ -75,6 +75,10 @@
         {
           "file": "ingress-template.yml",
           "target": "/usr/local/os"
+        },
+        {
+          "file": "server.yml",
+          "target": "/usr/local/os"
         }
       ]
     }
