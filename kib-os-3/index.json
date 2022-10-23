@@ -37,7 +37,7 @@
       "host01": [
         {
           "file": "prepare.sh",
-          "target": "/root",
+          "target": "/usr/local/autostart-scripts.d",
           "chmod": "+x"
         },
         {
