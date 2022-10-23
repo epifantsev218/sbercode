@@ -111,6 +111,10 @@
         {
           "file": "mutual.yml",
           "target": "/root"
+        },
+        {
+          "file": "egress-params.env",
+          "target": "/root"
         }
       ]
     }
