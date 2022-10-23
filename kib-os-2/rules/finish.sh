@@ -10,6 +10,10 @@ function san {
     grep "$1" "/root/certs/req.cnf" | wc -l
 }
 
+function backup() {
+   oc get service -o yaml > backup.yml
+}
+
 # Проверка наличия URL для вызова
 EASY_URL=$(url 'EASY_URL' 'easy')
 SIMPLE_URL=$(url 'SIMPLE_URL' 'simple')
@@ -29,6 +33,8 @@ SIMPLE_GW=$(oc describe gateways 2>&1 | grep ${SIMPLE_URL} | wc -l)
 MUTUAL_GW=$(oc describe gateways 2>&1 | grep ${MUTUAL_URL} | wc -l)
 SIMPLE_VS=$(oc describe virtualservices 2>&1 | grep ${SIMPLE_URL} | wc -l)
 MUTUAL_VS=$(oc describe virtualservices 2>&1 | grep ${MUTUAL_URL} | wc -l)
+
+backup
 
 jq --null-input \
 --arg EASY_URL "$EASY_URL" \
