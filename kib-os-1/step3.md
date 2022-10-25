@@ -14,7 +14,7 @@
 `oc process -f correct.yml --param-file connection.env -o yaml > conf.yml
 oc apply -f conf.yml`{{execute}}
 
-Повторим проверку подключения к Kafka. Подключение успешно
+Повторим проверку подключения к Kafka, соединение успешно
 
 `oc exec $(oc get pods -o name -l name=kafka-client | head -n 1) -- bash -c 'kafka-broker-api-versions.sh --bootstrap-server $KAFKA_ADDRESS'`{{execute}} {{execute}}
 

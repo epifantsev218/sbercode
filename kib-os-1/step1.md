@@ -12,7 +12,7 @@ Istio [ServiceEntry](https://istio.io/latest/docs/reference/config/networking/se
 `oc process -f easy.yml --param-file connection.env -o yaml > conf.yml
 oc apply -f conf.yml`{{execute}}
 
-Создадим топик на брокере Kafka. Подключение успешно
+Проверим подключение к брокеру Kafka, соединение успешно
 
 `oc exec $(oc get pods -o name -l name=kafka-client | head -n 1) -- bash -c 'kafka-broker-api-versions.sh --bootstrap-server $KAFKA_ADDRESS'`{{execute}}
 
