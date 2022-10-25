@@ -14,7 +14,7 @@ oc apply -f conf.yml`{{execute}}
 
 Создадим топик на брокере Kafka. Подключение успешно
 
-`oc exec $(oc get pods -o name -l name=kafka-client | head -n 1) -- bash -c 'kafka-topics.sh --bootstrap-server $KAFKA_ADDRESS --create --topic test --partitions 1 --replication-factor 1'`{{execute}}
+`oc exec $(oc get pods -o name -l name=kafka-client | head -n 1) -- bash -c 'kafka-broker-api-versions.sh --bootstrap-server $KAFKA_ADDRESS'`{{execute}}
 
 В логах контейнера istio-proxy видим прямое обращение к брокеру Kafka
 

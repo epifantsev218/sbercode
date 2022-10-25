@@ -9,7 +9,7 @@
 `oc get pods | grep kafka-client`{{execute}}
 
 Проверим подключение к брокеру Kafka, запустим команду для получения списка топиков из workload контейнера пода клиента
-`oc exec $(oc get pods -o name -l name=kafka-client | head -n 1) -- bash -c 'kafka-topics.sh --bootstrap-server $KAFKA_ADDRESS --list'`{{execute}}
+`oc exec $(oc get pods -o name -l name=kafka-client | head -n 1) -- bash -c 'kafka-broker-api-versions.sh --bootstrap-server $KAFKA_ADDRESS'`{{execute}}
 
 В логах прокси видим ошибку с кодом UH
 
