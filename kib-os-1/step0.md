@@ -20,6 +20,8 @@
 
 `exit`{{execute}}
 
+`oc exec $(oc get pods -o name | grep kafka-client | head -n 1) -- bash -c 'kafka-topics.sh --bootstrap-server $KAFKA_ADDRESS --list''`{{execute}}
+
 В логах прокси видим - ошибку UF,URX. Формат логов и описание кодов ошибок можно найти на странице
 
 https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage
