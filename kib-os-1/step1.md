@@ -20,11 +20,7 @@ oc apply -f conf.yml`{{execute}}
 
 `oc logs $(oc get pods -o name -l name=kafka-client | head -n 1) -c istio-proxy`{{execute}}
 
-<br />
-
 `[2022-10-18T20:24:03.639Z] "- - -" 0 - - - "-" 85 585 1100 - "-" "-" "-" "-" "172.30.247.31:9092" outbound|9092||kafka.apps.sbc-okd.pcbltools.ru 10.128.2.33:54464 172.30.247.31:9092 10.128.2.33:54460 - -`
-
-<br />
 
 Удаляем созданные конфиги
 
