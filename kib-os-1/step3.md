@@ -7,7 +7,9 @@
 * [Gateway](https://istio.io/latest/docs/reference/config/networking/gateway/)
 * [Virtual Service](https://istio.io/latest/docs/reference/config/networking/virtual-service/)
 
-Настроим маршрутизацию исходящего трафика через Egress Gateway
+Настроим маршрутизацию исходящего трафика через Egress Gateway с параметрами из файла
+
+`correct.env`{{open}}
 
 `oc process -f correct.yml --param-file connection.env -o yaml > conf.yml
 oc apply -f conf.yml`{{execute}}

@@ -14,14 +14,17 @@ oc apply -f conf.yml`{{execute}}
 
 Создадим топик на брокере Kafka. Подключение успешно
 
-`oc exec $(oc get pods -o name -l name=kafka-client | head -n 1) -- bash -c 'kafka-topics.sh --bootstrap-server $KAFKA_ADDRESS --create --topic test --partitions 1 --replication-factor 1'`
-{{execute}}
+`oc exec $(oc get pods -o name -l name=kafka-client | head -n 1) -- bash -c 'kafka-topics.sh --bootstrap-server $KAFKA_ADDRESS --create --topic test --partitions 1 --replication-factor 1'`{{execute}}
 
 В логах контейнера istio-proxy видим прямое обращение к брокеру Kafka
 
 `oc logs $(oc get pods -o name -l name=kafka-client | head -n 1) -c istio-proxy`{{execute}}
 
+<br />
+
 `[2022-10-18T20:24:03.639Z] "- - -" 0 - - - "-" 85 585 1100 - "-" "-" "-" "-" "172.30.247.31:9092" outbound|9092||kafka.apps.sbc-okd.pcbltools.ru 10.128.2.33:54464 172.30.247.31:9092 10.128.2.33:54460 - -`
+
+<br />
 
 Удаляем созданные конфиги
 
