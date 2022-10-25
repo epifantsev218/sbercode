@@ -6,7 +6,7 @@ allow[msg] {
 	msg := "[OK] создан Service Entry для HTTP-соединения"
 }
 
-error[msg] {
+deny[msg] {
 	res := input.se
     res.easy == "0"
 	msg := "[ERROR] не создан Service Entry для HTTP-соединения"
@@ -18,7 +18,7 @@ allow[msg] {
 	msg := "[OK] создан Service Entry для Simple TLS"
 }
 
-error[msg] {
+deny[msg] {
 	res := input.se
     res.simple == "0"
 	msg := "[ERROR] не создан Service Entry для Simple TLS"
@@ -30,7 +30,7 @@ allow[msg] {
 	msg := "[OK] создан Service Entry для Mutual TLS"
 }
 
-error[msg] {
+deny[msg] {
 	res := input.se
     res.mutual == "0"
 	msg := "[ERROR] не создан Service Entry для Mutual TLS"
@@ -42,7 +42,7 @@ allow[msg] {
 	msg := "[OK] создан Gateway для Simple TLS"
 }
 
-error[msg] {
+deny[msg] {
 	res := input.gw
     res.simple == "0"
 	msg := "[ERROR] не создан Gateway для Simple TLS"
@@ -54,7 +54,7 @@ allow[msg] {
 	msg := "[OK] создан Gateway для Mutual TLS"
 }
 
-error[msg] {
+deny[msg] {
 	res := input.gw
     res.mutual == "0"
 	msg := "[ERROR] не создан Gateway для Mutual TLS"
@@ -66,7 +66,7 @@ allow[msg] {
 	msg := "[OK] создан Virtual Service для Simple TLS"
 }
 
-error[msg] {
+deny[msg] {
 	res := input.vs
     res.mutual == "0"
 	msg := "[ERROR] не создан Virtual Service для Mutual TLS"
@@ -78,7 +78,7 @@ allow[msg] {
 	msg := "[OK] создан Virtual Service для Mutual TLS"
 }
 
-error[msg] {
+deny[msg] {
 	res := input.vs
     res.simple == "0"
 	msg := "[ERROR] не создан Virtual Service для Simple TLS"
@@ -90,7 +90,7 @@ allow[msg] {
 	msg := "[OK] создан Destination Rule для Simple TLS"
 }
 
-error[msg] {
+deny[msg] {
 	res := input.dr
     res.simple == "0"
 	msg := "[ERROR] не создан Destination Rule для Simple TLS"
@@ -102,7 +102,7 @@ allow[msg] {
 	msg := "[OK] создан Destination Rule для Mutual TLS"
 }
 
-error[msg] {
+deny[msg] {
 	res := input.dr
     res.mutual == "0"
 	msg := "[ERROR] не создан Destination Rule для Mutual TLS"
