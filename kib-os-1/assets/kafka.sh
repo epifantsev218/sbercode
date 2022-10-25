@@ -16,9 +16,11 @@ oc config use-context ${infra_context}
 curr_project=$(oc project -q)
 
 ####deploy kafka
-sed "s/PROJECT_PLACEHOLDER/${curr_project}/g" /usr/local/kafka/kafka.yml |oc apply -f-
+broker_id=$(cat /proc/sys/kernel/random/uuid)
+sed "s/PROJECT_PLACEHOLDER/${curr_project}/g; s/BROKER_ID/${broker_id}/g" /usr/local/kafka/kafka.yml |oc apply -f-
 kafka_ip=$(oc get service kafka -o template --template {{.spec.clusterIP}})
-sed "s/KAFKA_IP/${kafka_ip}/g" /usr/local/kafka/connection.env >> $OUT_FILE
+sed "s/KAFKA_IP/${kafka_ip}/g; s/BROKER_ID/${broker_id}/g" /usr/local/kafka/connection.env >> $OUT_FILE
+sed "s/BROKER_ID/${broker_id}/g" /usr/local/kafka/kafka-client.yml >> /root/kafka-client.yml
 ####end
 
 ####create topic

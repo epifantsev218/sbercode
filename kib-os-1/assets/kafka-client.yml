@@ -26,7 +26,7 @@ spec:
           name: kafka-client
           env:
             - name: KAFKA_ADDRESS
-              value: 'kafka.apps.sbc-okd.pcbltools.ru:9092'
+              value: 'kafka-BROKER_ID.apps.sbc-okd.pcbltools.ru:9092'
           resources:
             limits:
               cpu: 100m
