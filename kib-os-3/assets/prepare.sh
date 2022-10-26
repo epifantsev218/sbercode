@@ -2,9 +2,6 @@
 PS1=1
 source /root/.bashrc
 
-OUT_FILE=~/connection.env
-DONE_FILE=/usr/local/etc/k8s.sh.done
-
 _user=student
 infra_project=infra
 work_project=work
@@ -52,4 +49,3 @@ sed "s/EASY_ADDRESS_PLACEHOLDER/${easy_url}/g; s/SIMPLE_ADDRESS_PLACEHOLDER/${si
 
 oc config use-context ${work_context}
 oc create secret generic certs --from-file=key.pem="${os_dir}/key.pem" --from-file=crt.pem="${os_dir}/crt.pem" --from-file=ca.pem="${os_dir}/crt.pem"
-touch $DONE_FILE

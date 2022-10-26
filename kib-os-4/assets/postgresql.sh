@@ -2,9 +2,6 @@
 PS1=1
 source /root/.bashrc
 
-OUT_FILE=~/connection.env
-DONE_FILE=/usr/local/etc/k8s.sh.done
-
 _user=student
 infra_project=infra
 work_project=work
@@ -15,16 +12,15 @@ work_context=${work_project}-${_user}
 oc config use-context ${infra_context}
 curr_project=$(oc project -q)
 
-####deploy postgres
-pgpass=$(cat /proc/sys/kernel/random/uuid)
+os_dir=/usr/local/pg
+task_dir=/root
+
+pg_pass=$(cat /proc/sys/kernel/random/uuid)
 pg_id=$(cat /proc/sys/kernel/random/uuid)
-oc create secret generic pg-postgresql --from-literal=postgres-password="$pgpass" --dry-run=client -oyaml \
-| oc apply -f-
-oc apply -f /usr/local/pg/postgresql.yml -n "${curr_project}"
+oc create secret generic pg-postgresql --from-literal=postgres-password="$pg_pass" --dry-run=client -oyaml | oc apply -f-
+oc apply -f ${os_dir}/postgresql.yml -n "${curr_project}"
 pg_ip=$(oc get service pg -o template --template {{.spec.clusterIP}})
-sed "s/PG_IP/${pg_ip}/g; s/PG_ID/${pg_id}/g" /usr/local/pg/connection.env >> $OUT_FILE
-sed "s/PG_ID/${pg_id}/g" /usr/local/pg/postgresql-client.yml >> /root/postgresql-client.yml
-####end
+sed "s/PG_IP/${pg_ip}/g; s/PG_ID/${pg_id}/g" ${os_dir}/connection.env >> ${task_dir}/connection.env
+sed "s/PG_ID/${pg_id}/g" ${os_dir}/postgresql-client.yml >> ${task_dir}/postgresql-client.yml
 
 oc config use-context ${work_context}
-touch $DONE_FILE
