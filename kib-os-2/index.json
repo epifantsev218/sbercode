@@ -78,11 +78,6 @@
         {
           "file": "simple-params.env",
           "target": "/root"
-        },
-        {
-          "file": "prepare.sh",
-          "target": "/usr/local/autostart-scripts.d",
-          "chmod": "+x"
         }
       ]
     }
