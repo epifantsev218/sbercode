@@ -8,9 +8,7 @@
 
 * [Route](https://docs.openshift.com/container-platform/4.7/networking/routes/route-configuration.html)
 * [Gateway](https://istio.io/latest/docs/reference/config/networking/gateway/)
-* тест ссылки https://istio.io/latest/docs/reference/config/networking/gateway/
 * [Virtual Service](https://istio.io/latest/docs/reference/config/networking/virtual-service/)
-* тест ссылки 2 `https://istio.io/latest/docs/reference/config/networking/virtual-service/`
 
 Уточните параметры Simple TLS соединения
 
