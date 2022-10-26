@@ -1,5 +1,4 @@
-Чтобы проверять внешнее подключение, развернем образ, содержащий в себе клиент PostgreSQL, дождемся, пока под с клиентом
-запустится и подключимся к терминалу его workload-контейнера
+Для проверки соединения развернем образ с клиентом PostgreSQL
 
 `postgresql-client.yml`{{open}}
 
@@ -9,19 +8,11 @@
 
 `oc get pods | grep postgresql-client`{{execute}}
 
-Подключаемся к терминалу workload-контейнера пода
+Проверяем подключение к экземпляру PostgreSQL из терминала workload-контейнера пода
 
-`oc rsh $(oc get pods -o name | grep postgresql-client | head -n 1)`{{execute}}
+`oc exec $(oc get pods -o name -l app=postgresql-client | head -n 1) -- bash -c 'pg_isready -h pg.apps.sbc-okd.pcbltools.ru -p 5432'`{{execute}}
 
-Проверяем подключение к экземпляру PostgreSQL
-
-`pg_isready -h pg.apps.sbc-okd.pcbltools.ru -p 5432`{{execute}}
-
-В терминале видим ошибку соединения, выходим из консоли терминала контейнера приложения
-
-`exit`{{execute}}
-
-В логах прокси видим - ошибку UF,URX. Формат логов и описание кодов ошибок можно найти на странице
+В логах прокси видим ошибку UF,URX. Формат логов и описание кодов ошибок можно найти на странице
 
 https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage
 
