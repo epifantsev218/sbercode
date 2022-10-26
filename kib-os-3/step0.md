@@ -6,7 +6,7 @@
 
 Дождемся, пока под запустится
 
-`oc get pods | grep client`{{execute}}
+`oc get pods -l app=client`{{execute}}
 
 Проверим подключение к внешнему узлу из workload-контейнера пода клиента
 
