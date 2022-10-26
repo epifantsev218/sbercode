@@ -8,21 +8,10 @@
 
 `oc get pods | grep client`{{execute}}
 
-Подключаемся к терминалу workload-контейнера пода
+Проверим подключение к внешнему узлу из workload-контейнера пода клиента
 
-`oc rsh $(oc get pods -o name | grep client | head -n 1)`{{execute}}
+`oc exec $(oc get pods -o name -l app=client | head -n 1) -- bash -c 'curl -v http://$EASY_ADDRESS'`{{execute}}
 
-Проверяем подключение к внешнему узлу
+В терминале и логе контейнера istio-proxy видим ошибку, т.к. соединение не настроено
 
-`curl -v http://$EASY_ADDRESS`{{execute}}
-
-В терминале видим ошибку соединения, выходим из терминала контейнера приложения
-
-`exit`{{execute}}
-
-Видим ошибку в логе istio-proxy, т.к. соединение не настроено
-
-`oc logs $(oc get pods -o name | grep client | head -n 1) -c istio-proxy`{{execute}}
-
-
-TODO REGISTRY_ONLY
+`oc logs $(oc get pods -o name -l app=client | head -n 1) -c istio-proxy`{{execute}}

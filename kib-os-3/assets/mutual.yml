@@ -25,7 +25,7 @@ objects:
           number: ${{HTTP_PORT}}
           protocol: HTTP
       resolution: DNS
-    # Gateway для обработки трафика, входящего в Egress Proxy (https://istio.io/latest/docs/reference/config/networking/gateway/)
+    # Gateway для обработки трафика, входящего в Egress Proxy
   - apiVersion: networking.istio.io/v1alpha3
     kind: Gateway
     metadata:
@@ -109,7 +109,7 @@ objects:
               clientCertificate: /etc/istio/egress-certs/crt.pem
               privateKey: /etc/istio/egress-certs/key.pem
               mode: MUTUAL
-              # Имя узла используется для проверки CN (SAN) сертификата сервера
+              # Имя узла используется для проверки SAN сертификата сервера
               sni: ${HOST}
 parameters:
   - name: HOST

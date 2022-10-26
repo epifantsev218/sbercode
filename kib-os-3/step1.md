@@ -1,6 +1,7 @@
-Для настройки подключения к внешнему узлу используется объект Istio Service Entry (https://istio.io/
-latest/docs/reference/config/networking/service-entry/)
-Шаблон ServiceEntry для настройки HTTP-соединения с внешним узлом находятся в файле
+Для объявления возможности подключения к внешнему ресурсу используется объект
+Istio [ServiceEntry](https://istio.io/latest/docs/reference/config/networking/service-entry/)
+
+Изучите шаблон ServiceEntry для настройки TCP-соединения с внешним узлом в файле, обратите внимание на комментарии
 
 `easy.yml`{{open}}
 
@@ -11,12 +12,10 @@ latest/docs/reference/config/networking/service-entry/)
 `oc process -f easy.yml --param-file easy-params.env -o yaml > conf.yml
 oc apply -f conf.yml`{{execute}}
 
-Повторим проверку подключения. Подключение успешно
+Повторим проверку, соединение успешно
 
-`oc rsh $(oc get pods -o name | grep client | head -n 1)`{{execute}}
-`curl -v http://$EASY_ADDRESS`{{execute}}
-`exit`{{execute}}
+`oc exec $(oc get pods -o name -l app=client | head -n 1) -- bash -c 'curl -v http://$EASY_ADDRESS'`{{execute}}
 
 В логах контейнера istio-proxy видим прямое обращение к внешнему узлу
 
-`oc logs $(oc get pods -o name | grep client | head -n 1) -c istio-proxy`{{execute}}
+`oc logs $(oc get pods -o name -l app=client | head -n 1) -c istio-proxy`{{execute}}

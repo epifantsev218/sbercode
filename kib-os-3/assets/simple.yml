@@ -25,7 +25,7 @@ objects:
           number: ${{HTTP_PORT}}
           protocol: HTTP
       resolution: DNS
-    # Gateway для обработки трафика, входящего в Egress Proxy (https://istio.io/latest/docs/reference/config/networking/gateway/)
+    # Gateway для обработки трафика, входящего в Egress Proxy
   - apiVersion: networking.istio.io/v1alpha3
     kind: Gateway
     metadata:
@@ -42,7 +42,7 @@ objects:
             name: http-${{EGRESS_PORT}}
             number: ${{EGRESS_PORT}}
             protocol: HTTP
-        # VirtualService (https://istio.io/latest/docs/reference/config/networking/gateway/), реализующий:
+        # VirtualService, реализующий:
         # - перенаправление обращений к внешнему узлу на Egress Proxy
         # - перенаправление трафика из Egress Proxy на внешний узел
   - apiVersion: networking.istio.io/v1alpha3
@@ -106,7 +106,7 @@ objects:
               caCertificates: /etc/istio/egress-certs/crt.pem
               # Для режима SIMPLE клиентский сертификат не требуется
               mode: SIMPLE
-              # Имя узла используется для проверки CN (SAN) сертификата сервера
+              # Имя узла используется для проверки SAN сертификата сервера
               sni: ${HOST}
 parameters:
   - name: HOST
