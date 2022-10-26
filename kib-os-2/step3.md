@@ -1,4 +1,13 @@
-Для настройки нужно знать имя проекта, а также имя Control Plane, к которой подключен проект. Найдем название в описании проекта
+В соответствии с требованями УЭК весь входящий в проект АС трафик должен проходить через Ingress Gateway в проекте АС.
+Для запуска своего Ingress Gateway нам потребуются:
+
+* Имя проекта
+* Имя Control Plane Istio, к которой подключен проект
+* Название сервиса Ingress. Название должно содержать КЭ АС, это требование сопровождения Istio
+* Перечень портов, используемых для организаци трафика через Ingress Gateway. Все порты должны быть объявлены в Service
+  Ingress Gateway
+* Secret, содержащий серверный сертификат и цепочку доверенных сертификатов. Он должен быть монтирован в
+  Deployment Ingress Gateway (см. блоки Volumes и VolumeMounts)
 
 Получим имя проекта
 
@@ -8,16 +17,15 @@
 
 `oc describe project $(oc project -q) | grep member-of | head -n 1 | cut -d '=' -f2`{{execute}}
 
-Создадим Deployment Ingress Gateway. Для настройки требуется:
-* имя проекта
-* имя Control Plane
-* название сервиса Ingress. Название должно содержать КЭ АС. Это требование сопровождения Istio
-* перечень портов, используемых для организации трафика через Ingress Proxy. Все порты должны быть объявлены в Service Ingress Gateway
-* secret, содержащий сертификаты, которые будут использоваться для настройки соединений. Они должны пыть монтированы в Deployment Ingress Gateway (см. блоки Volumes и VolumeMounts)
-
-Заполните имена проекта и Control Plane в файле
+Заполните полученные параметры в файле
 
 `ingress-params.env`{{open}}
+
+Изучите шаблон Ingress Gateway 
+
+`ingress-template.yml`{{open}}
+
+Создадим Deployment Ingress Gateway
 
 `oc process -f ingress-template.yml --param-file ingress-params.env -o yaml > conf.yml
 oc apply -f conf.yml`{{execute}}

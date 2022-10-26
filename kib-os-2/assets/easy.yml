@@ -3,7 +3,7 @@ kind: Template
 metadata:
   name: easy-routing-template
 objects:
-    # Route (https://docs.openshift.com/container-platform/4.7/networking/routes/route-configuration.html), описывающий внешнюю точку доступа к ресурсам внутри Openshift
+    # Route, описывающий внешнюю точку доступа к ресурсам внутри Openshift
   - kind: Route
     apiVersion: route.openshift.io/v1
     metadata:

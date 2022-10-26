@@ -8,4 +8,4 @@
 
 Дождемся, пока под с сервером запустится
 
-`oc get pods | grep server`{{execute}}
+`oc get pods -l app=server`{{execute}}
