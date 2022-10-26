@@ -23,6 +23,7 @@ oc create secret generic pg-postgresql --from-literal=postgres-password="$pgpass
 oc apply -f /usr/local/pg/postgresql.yml -n "${curr_project}"
 pg_ip=$(oc get service pg -o template --template {{.spec.clusterIP}})
 sed "s/PG_IP/${pg_ip}/g; s/PG_ID/${pg_id}/g" /usr/local/pg/connection.env >> $OUT_FILE
+sed "s/PG_ID/${pg_id}/g" /usr/local/pg/postgresql-client.yml >> /root/postgresql-client.yml
 ####end
 
 oc config use-context ${work_context}

@@ -10,7 +10,7 @@
 
 Проверяем подключение к экземпляру PostgreSQL из терминала workload-контейнера пода
 
-`oc exec $(oc get pods -o name -l app=postgresql-client | head -n 1) -- bash -c 'pg_isready -h pg.apps.sbc-okd.pcbltools.ru -p 5432'`{{execute}}
+`oc exec $(oc get pods -o name -l app=postgresql-client | head -n 1) -- bash -c 'pg_isready -h $PG_ADDRESS -p 5432'`{{execute}}
 
 В логах прокси видим ошибку UF,URX. Формат логов и описание кодов ошибок можно найти на странице
 

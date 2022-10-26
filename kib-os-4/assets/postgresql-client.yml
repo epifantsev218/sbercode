@@ -25,6 +25,9 @@ spec:
             - '-c'
             - while true; do sleep 30; done
           name: postgresql-client
+          env:
+            - name: PG_ADDRESS
+              value: 'pg-PG_ID.apps.sbc-okd.pcbltools.ru'
           resources:
             limits:
               cpu: 100m

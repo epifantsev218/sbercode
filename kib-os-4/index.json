@@ -46,7 +46,7 @@
         },
         {
           "file": "postgresql-client.yml",
-          "target": "/root"
+          "target": "/usr/local/pg"
         },
         {
           "file": "egress-template.yml",
