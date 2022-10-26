@@ -11,7 +11,7 @@ oc apply -f conf.yml`{{execute}}
 Проверим подключение. Обратите внимание, что приложение по-прежнему обращается к порту 80, а уже Egress Gateway - к
 порту 443
 
-`oc exec $(oc get pods -o name -l app=client | head -n 1) -- bash -c 'curl -v http://$EASY_ADDRESS'`{{execute}}
+`oc exec $(oc get pods -o name -l app=client | head -n 1) -- sh -c 'curl -v http://$EASY_ADDRESS'`{{execute}}
 
 В логах istio-proxy, что запрос к внешнему узлу был перенаправлен на порт 3000 Egress Gateway
 

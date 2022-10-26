@@ -10,7 +10,7 @@
 
 Проверим подключение к внешнему узлу из workload-контейнера пода клиента
 
-`oc exec $(oc get pods -o name -l app=client | head -n 1) -- bash -c 'curl -v http://$EASY_ADDRESS'`{{execute}}
+`oc exec $(oc get pods -o name -l app=client | head -n 1) -- sh -c 'curl -v http://$EASY_ADDRESS'`{{execute}}
 
 В терминале и логе контейнера istio-proxy видим ошибку, т.к. соединение не настроено
 
