@@ -10,7 +10,7 @@
 
 Настроим маршрутизацию исходящего трафика через Egress Gateway с параметрами из файла
 
-`correct.env`{{open}}
+`connection.env`{{open}}
 
 `oc process -f correct.yml --param-file connection.env -o yaml > conf.yml
 oc apply -f conf.yml`{{execute}}
