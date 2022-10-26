@@ -8,7 +8,9 @@
 
 * [Route](https://docs.openshift.com/container-platform/4.7/networking/routes/route-configuration.html)
 * [Gateway](https://istio.io/latest/docs/reference/config/networking/gateway/)
+* тест ссылки https://istio.io/latest/docs/reference/config/networking/gateway/
 * [Virtual Service](https://istio.io/latest/docs/reference/config/networking/virtual-service/)
+* тест ссылки 2 `https://istio.io/latest/docs/reference/config/networking/virtual-service/`
 
 Уточните параметры Simple TLS соединения
 
@@ -35,9 +37,4 @@ export $(cat simple-params.env | xargs)`{{execute}}
 
 `oc logs $(oc get pods -o name | grep ingress | head -n 1)`{{execute}}
 
-`[2022-10-05T20:56:15.535Z] "GET / HTTP/2" 200 - via_upstream - "-" 0 44 1 1 "10.129.0.1" "curl/7.68.0" "841d47fc-a5bb-939f-b41c-2be4fca427c2" "simple.apps.sbc-okd.pcbltools.ru" "10.128.3.112:8080" outbound|8080||server.sbercode-654d59b9-0701-4932-a22d-bb524ae4bb5b-work.svc.cluster.local 10.131.1.130:52342 10.131.1.130:3000 10.129.0.1:38002 simple.apps.sbc-okd.pcbltools.ru -`
-
-В логах контейнера istio-proxy сервера видим успешный запрос от Ingress Gateway
-
-`oc logs $(oc get pods -o name -l app=server | head -n 1) -c istio-proxy`{{execute}}
-
+`[2022-10-26T20:32:23.981Z] "GET / HTTP/2" 200 - via_upstream - "-" 0 44 5 5 "10.128.0.1" "curl/7.85.0" "11b3e582-f84e-92f0-8e3b-11af2b4b4c0b" "asd.apps.sbc-okd.pcbltools.ru" "10.128.3.171:8080" outbound|8080||server.sbercode-f581046a-24c0-403b-8540-5f829d9abd3a-work.svc.cluster.local 10.128.3.173:56232 10.128.3.173:3000 10.128.0.1:48910 asd.apps.sbc-okd.pcbltools.ru -`

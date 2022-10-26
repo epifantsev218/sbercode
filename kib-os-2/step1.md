@@ -9,7 +9,8 @@
 Для объявления доступа к сервису Openshift извне кластера по доменному имени используется
 объект [Route](https://docs.openshift.com/container-platform/4.7/networking/routes/route-configuration.html)
 
-Изучите параметры в файле
+Изучите шаблон Route для настройки доступа к сервису
+
 `easy.yml`{{open}}
 
 Применяем конфиги Route
