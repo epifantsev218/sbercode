@@ -11,7 +11,7 @@
 Проверим подключение к брокеру Kafka, запустим команду для получения версий API брокера из workload контейнера пода клиента
 `oc exec $(oc get pods -o name -l name=kafka-client | head -n 1) -- bash -c 'kafka-broker-api-versions.sh --bootstrap-server $KAFKA_ADDRESS'`{{execute}}
 
-В логах прокси видим ошибку с кодом UH
+В логах istio-proxy видим ошибку с кодом UH
 
 `oc logs $(oc get pods -o name -l name=kafka-client | head -n 1) -c istio-proxy`{{execute}}
 

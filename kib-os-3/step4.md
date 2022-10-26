@@ -12,13 +12,13 @@ oc apply -f conf.yml`{{execute}}
 
 `oc exec $(oc get pods -o name -l app=client | head -n 1) -- bash -c 'curl -v http://$EASY_ADDRESS'`{{execute}}
 
-В логах Istio Proxy, что запрос к внешнему узлу был перенаправлен на порт 3001 Egress Proxy
+В логах istio-proxy, что запрос к внешнему узлу был перенаправлен на порт 3001 Egress Gateway
 
 `oc logs $(oc get pods -o name -l app=client | head -n 1) -c istio-proxy`{{execute}}
 
 `[2022-10-23T18:29:53.969Z] "GET / HTTP/1.1" 200 - via_upstream - "-" 0 44 20 20 "-" "curl/7.64.0" "14c51ea4-a2e7-94fa-9e8e-45f5a9a7ef52" "b9e93687-47e6-4ff6-a64c-7fa635e08ef7.apps.sbc-okd.pcbltools.ru" "10.128.2.35:3001" outbound|3001||ci00000000-test-egress.sbercode-a06d6040-d4da-456c-ae55-2725df9438f0-work.svc.cluster.local 10.128.2.33:57396 240.240.0.3:80 10.128.2.33:50008 - -`
 
-В логах Egress Proxy видим обращение к порту 443 внешнего узла
+В логах Egress Gateway видим обращение к порту 443 внешнего узла
 
 `oc logs $(oc get pods -o name | grep egress | head -n 1)`{{execute}}
 

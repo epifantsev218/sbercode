@@ -19,13 +19,13 @@ oc apply -f conf.yml`{{execute}}
 
 `oc exec $(oc get pods -o name -l name=kafka-client | head -n 1) -- bash -c 'kafka-broker-api-versions.sh --bootstrap-server $KAFKA_ADDRESS'`{{execute}}
 
-В логах Istio Proxy, что запрос к внешнему узлу был перенаправлен на порт 3000 Egress Proxy
+В логах istio-proxy, что запрос к внешнему узлу был перенаправлен на порт 3000 Egress Gateway
 
 `oc logs $(oc get pods -o name -l name=kafka-client | head -n 1) -c istio-proxy`{{execute}}
 
 `[2022-10-25T21:01:00.331Z] "- - -" 0 - - - "-" 85 585 50690 - "-" "-" "-" "-" "10.131.0.79:3000" outbound|3000||ci00000000-test-egress.sbercode-f4869733-8f72-4aae-a1be-eb097f174235-work.svc.cluster.local 10.128.3.43:44730 172.30.26.92:9092 10.128.3.43:58754 - -`
 
-В логах Egress Proxy видим обращение к внешнему узлу
+В логах Egress Gateway видим обращение к внешнему узлу
 
 `oc logs $(oc get pods -o name | grep egress | head -n 1)`{{execute}}
 

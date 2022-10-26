@@ -64,14 +64,14 @@ objects:
           route:
             - destination:
                 host: ${EGRESS_NAME}
-                # Порт Egress Proxy
+                # Порт Egress Gateway
                 port:
                   number: 3000
         # Egress -> внешний узел
         - match:
             - gateways:
                 - ${PREFIX}-gw
-              # Порт Egress Proxy
+              # Порт Egress Gateway
               port: 3000
           route:
             - destination:

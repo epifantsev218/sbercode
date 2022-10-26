@@ -27,13 +27,13 @@ deny[msg] {
 allow[msg] {
 	res := input.log
     res.egress != "0"
-	msg := "[OK] успешный вызов через egress proxy"
+	msg := "[OK] успешный вызов через Egress Gateway"
 }
 
 deny[msg] {
 	res := input.log
     res.egress == "0"
-	msg := "[ERROR] отсутствует вызов через egress proxy"
+	msg := "[ERROR] отсутствует вызов через Egress Gateway"
 }
 
 allow[msg] {

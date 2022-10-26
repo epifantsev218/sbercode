@@ -1,7 +1,7 @@
 {
-  "pathwayTitle": "Настройка исходящих HTTP соединений, работа с сертификатами на Egress Proxy",
-  "title": "Настройка исходящих HTTP соединений, работа с сертификатами на Egress Proxy",
-  "description": "Настройка исходящих HTTP соединений, работа с сертификатами на Egress Proxy",
+  "pathwayTitle": "Настройка исходящих HTTP соединений, работа с сертификатами на Egress Gateway",
+  "title": "Настройка исходящих HTTP соединений, работа с сертификатами на Egress Gateway",
+  "description": "Настройка исходящих HTTP соединений, работа с сертификатами на Egress Gateway",
   "difficulty": "beginner",
   "time": "30 minutes",
   "details": {
@@ -11,11 +11,11 @@
         "text": "step0.md"
       },
       {
-        "title": "Простая реализация - HTTP соединение без Egress Proxy",
+        "title": "Простая реализация - HTTP соединение без Egress Gateway",
         "text": "step1.md"
       },
       {
-        "title": "Настройка Egress Proxy",
+        "title": "Настройка Egress Gateway",
         "text": "step2.md"
       },
       {
