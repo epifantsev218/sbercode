@@ -42,7 +42,7 @@ objects:
             name: http-${{EGRESS_PORT}}
             number: ${{EGRESS_PORT}}
             protocol: HTTP
-        # VirtualService (https://istio.io/latest/docs/reference/config/networking/gateway/), реализующий:
+        # VirtualService, реализующий:
         # - перенаправление обращений к внешнему узлу на Egress Gateway
         # - перенаправление трафика из Egress Gateway на внешний узел
   - apiVersion: networking.istio.io/v1alpha3
@@ -85,7 +85,7 @@ objects:
                 # HTTPS-порт для перенаправления из Egress
                 port:
                   number: ${{HTTPS_PORT}}
-  # DestinationRule (https://istio.io/latest/docs/reference/config/networking/destination-rule) для настроек TLS
+  # DestinationRule для настроек TLS
   - apiVersion: networking.istio.io/v1alpha3
     kind: DestinationRule
     metadata:

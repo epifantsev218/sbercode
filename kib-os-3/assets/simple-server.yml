@@ -3,7 +3,7 @@ kind: Template
 metadata:
   name: ingressgateway-routing-template
 objects:
-  # Gateway для обработки трафика, входящего в Ingress Proxy (https://istio.io/latest/docs/reference/config/networking/gateway/)
+  # Gateway для обработки трафика, входящего в Ingress Proxy
   - apiVersion: networking.istio.io/v1alpha3
     kind: Gateway
     metadata:
@@ -27,7 +27,7 @@ objects:
             mode: SIMPLE
             privateKey: /etc/istio/ingress-certs/key.pem
             serverCertificate: /etc/istio/ingress-certs/crt.pem
-  # Route (https://docs.openshift.com/container-platform/4.7/networking/routes/route-configuration.html), описывающий внешнюю точку доступа к ресурсам внутри Openshift
+  # Route, описывающий внешнюю точку доступа к ресурсам внутри Openshift
   - apiVersion: route.openshift.io/v1
     kind: Route
     metadata:
@@ -49,7 +49,7 @@ objects:
       to:
         kind: Service
         name: ${INGRESS_NAME}
-  # VirtualService (https://istio.io/latest/docs/reference/config/networking/gateway/), реализующий маршрутизацию трафика от Ingress Proxy к подам приложения
+  # VirtualService, реализующий маршрутизацию трафика от Ingress Proxy к подам приложения
   - apiVersion: networking.istio.io/v1alpha3
     kind: VirtualService
     metadata:
