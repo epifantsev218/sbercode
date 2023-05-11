@@ -19,9 +19,7 @@
     }
   },
   "files": [
-    "~/.ssh/authorized_keys",
-    "~/.ssh/known_hosts",
-    "~/.ssh/id_rsa.pub"
+    "~/.ssh/authorized_keys"
   ],
   "environment": {
     "uilayout": "terminal",
