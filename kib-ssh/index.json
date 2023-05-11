@@ -18,9 +18,7 @@
       "text": "finish.md"
     }
   },
-  "files": [
-    "~/.ssh/authorized_keys"
-  ],
+  "files": [],
   "environment": {
     "uilayout": "terminal",
     "uisettings": "yaml",
