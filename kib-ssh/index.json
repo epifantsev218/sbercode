@@ -7,8 +7,16 @@
   "details": {
     "steps": [
       {
-        "title": "Формирование ключевой пары",
+        "title": "Попытка подключения",
         "text": "step0.md"
+      },
+      {
+        "title": "Генерация ключа",
+        "text": "step1.md"
+      },
+      {
+        "title": "Добавление ключа на внешний узел",
+        "text": "step2.md"
       }
     ],
     "intro": {
@@ -16,6 +24,15 @@
     },
     "finish": {
       "text": "finish.md"
+    },
+    "assets": {
+      "host01": [
+        {
+          "file": "prepare.sh",
+          "target": "/usr/local/autostart-scripts.d",
+          "chmod": "+x"
+        }
+      ]
     }
   },
   "files": [],

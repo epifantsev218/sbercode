@@ -1,15 +1,17 @@
-`ssh-keygen -f ~/.ssh/id_rsa`{{execute}}
+В рамках упражнения вместо реального внешнего узла настроим SSH подключение к localhost
+
+Сначала попробуем подключиться без дополнительных настроек
 
 `ssh localhost`{{execute}}
 
-`cat ~/.ssh/id_rsa.pub >  ~/.ssh/authorized_keys`{{execute}}
+На вопрос
 
-`cat ~/.ssh/authorized_keys`{{execute}}
+`Are you sure you want to continue connecting (yes/no/[fingerprint])?`
 
-`ssh localhost`{{execute}}
+ответим
 
-`cat ~/.ssh/known_hosts`{{execute}}
+`yes`{{execute}}
 
-Для проверки
+Для подключения необходим пароль и после нескольких неудачных попыток его ввода получаем ошибку
 
-`ssh localhost -f 'pwd'`{{execute}}
+`Permission denied, please try again.`
