@@ -24,15 +24,6 @@
     },
     "finish": {
       "text": "finish.md"
-    },
-    "assets": {
-      "host01": [
-        {
-          "file": "prepare.sh",
-          "target": "/usr/local/autostart-scripts.d",
-          "chmod": "+x"
-        }
-      ]
     }
   },
   "files": [],
